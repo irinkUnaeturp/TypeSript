@@ -1,12 +1,15 @@
 {
-    "scripts": {
-      "build": "tsc",
-      "start": "tsc && node dist/index.js"
-    },
-    "devDependencies": {
-      "@types/node": "^20.11.17"
-    },
-    "dependencies": {
-      "ccxt": "^4.2.44"
-    }
+  "scripts": {
+    "build": "tsc",
+    "start": "tsc && node dist/index.js",
+    "type": "module",
+    "name": "src",
+    "version": "1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.17"
+  },
+  "dependencies": {
+    "ccxt": "^4.2.44"
   }
+}

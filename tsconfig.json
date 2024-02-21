@@ -22,4 +22,13 @@
     "include": [
         "src/*.ts"
     ],
+    "exclude": [
+        "src/2_Note.ts",
+        "src/H-index.ts",
+        "src/H_index.ts",
+        "src/MaxPrice.ts",
+        "src/MaxProfit.ts",
+        "src/RemoveDublicastes.ts",
+        "src/RemoveDublicates.ts"
+    ]
 }
