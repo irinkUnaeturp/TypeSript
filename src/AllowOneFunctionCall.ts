@@ -1,4 +1,4 @@
-type JSONValue =  number 
+//type JSONValue =  number 
 type OnceFn = (...args: JSONValue[]) => JSONValue | undefined
 
 function once(fn: Function): OnceFn {
