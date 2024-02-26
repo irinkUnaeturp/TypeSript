@@ -1,15 +1,17 @@
 import { cancellable} from "./TimeoutCancellation"
-const result = [];
+const result: { time: number; returned: number; }[] = [];
 
 const fn = (x) => x * 5;
 const args = [2], t = 20, cancelTimeMs = 50;
 
 const start = performance.now();
 
+
 const log = (...argsArr) => {
     const diff = Math.floor(performance.now() - start);
-    result.push({ "time": diff, "returned": fn(...argsArr) });
+    result.push({ "time": diff, "returned": fn(argsArr) });
 }
+
 
 const cancel = cancellable(log, args, t);
 const maxT = Math.max(t, cancelTimeMs);
