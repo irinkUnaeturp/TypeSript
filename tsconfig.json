@@ -30,7 +30,5 @@
         "src/MaxProfit.ts",
         "src/RemoveDublicastes.ts",
         "src/RemoveDublicates.ts",
-        "src/AllowOneFunctionCall.ts",
-        "src/returnLegth.ts"
     ]
 }
