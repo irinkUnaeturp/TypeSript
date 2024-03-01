@@ -1,6 +1,6 @@
 "use strict";
 let nums3 = [1, 1, 2];
-function removeDuplicates(nums3) {
+function removeDuplicat(nums3) {
     let i = 0;
     while (i < nums3.length) {
         if (nums3[i] === nums3[i + 1]) {
@@ -12,5 +12,5 @@ function removeDuplicates(nums3) {
     return i;
 }
 ;
-console.log(removeDuplicates([1, 1, 2]));
+console.log(removeDuplicat([1, 1, 2]));
 //# sourceMappingURL=RemoveDublicastes.js.map

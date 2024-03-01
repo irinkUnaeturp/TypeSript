@@ -1,21 +1,21 @@
 //type JSONValue =  number 
-type OnceFn = (...args: JSONValue[]) => JSONValue | undefined
+type OnceFn = (...args: JSONValuee[]) => JSONValuee | undefined
 
-function once(fn: Function): OnceFn {
+function once(f: Function): OnceFn {
    
         let i = 1;
         return function (...args) {
             if (i) {
                i = 0;
-                return (fn(...args))
+                return (f(...args))
             }
         };
     }
     
 
 
- //let fn = (a,b,c) => (a + b + c)
- let onceFn = once(fn)
+ let f = (a,b,c) => (a + b + c)
+ let onceFn = once(f)
 
  console.log(onceFn(1,2,3)); // 6
  console.log(onceFn(2,3,6)); // returns undefined without calling fn

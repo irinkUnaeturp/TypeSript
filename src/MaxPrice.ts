@@ -1,5 +1,5 @@
 const prices: number[] = [7,1,5,3,6,4]
-function maxProfit(prices: number[]): number {
+function maxPrice(prices: number[]): number {
     let minPrice = prices[0]
     let maxPrice = 0
      
@@ -11,4 +11,4 @@ function maxProfit(prices: number[]): number {
     return maxPrice
 
 };
-console.log(maxProfit([7,1,5,3,6,4]))
+console.log(maxPrice([7,1,5,3,6,4]))

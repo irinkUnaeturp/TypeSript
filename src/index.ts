@@ -1,21 +1,22 @@
-import { cancellable} from "./TimeoutCancellation"
+import { cancellable } from "./IntervalCancellation";
 const result: { time: number; returned: number; }[] = [];
-
-const fn = (x) => x * 5;
-const args = [2], t = 20, cancelTimeMs = 50;
-
+const fun = (x) => x * 2;
+const args = [4], t = 35, cancelTimeMs = 190;
 const start = performance.now();
-
-
 const log = (...argsArr) => {
     const diff = Math.floor(performance.now() - start);
-    result.push({ "time": diff, "returned": fn(argsArr) });
+    result.push({ "time": diff, "returned": fun(argsArr) });
 }
 
-
 const cancel = cancellable(log, args, t);
-const maxT = Math.max(t, cancelTimeMs);
 setTimeout(cancel, cancelTimeMs);
 setTimeout(() => {
-    console.log(result); // [{"time":20,"returned":10}]
-}, maxT + 15)
+    console.log(result); // [
+    //     {"time":0,"returned":8},
+    //     {"time":35,"returned":8},
+    //     {"time":70,"returned":8},
+    //     {"time":105,"returned":8},
+    //     {"time":140,"returned":8},
+    //     {"time":175,"returned":8}
+    // ]
+}, cancelTimeMs + t + 15) 
