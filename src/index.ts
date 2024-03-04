@@ -13,10 +13,10 @@ setTimeout(cancel, cancelTimeMs);
 setTimeout(() => {
     console.log(result); // [
     //     {"time":0,"returned":8},
-    //     {"time":35,"returned":8},
-    //     {"time":70,"returned":8},
-    //     {"time":105,"returned":8},
-    //     {"time":140,"returned":8},
-    //     {"time":175,"returned":8}
+    //     {"time":36,"returned":8},
+    //     {"time":71,"returned":8},
+    //     {"time":107,"returned":8},
+    //     {"time":143,"returned":8},
+    //     {"time":180,"returned":8}
     // ]
 }, cancelTimeMs + t + 15) 
