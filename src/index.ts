@@ -1,4 +1,6 @@
-import { timeLimit } from "./PromiseTimeLimit";
+import { TimeLimitedCache } from "./Cache";
 
-const limited = timeLimit((t) => new Promise(res => setTimeout(res, t)), 100);
-limited(150).catch(console.log) // "Time Limit Exceeded" at t=100ms
+const timeLimitedCache = new TimeLimitedCache()
+console.log(timeLimitedCache.set(1, 42, 1000)); // false
+console.log(timeLimitedCache.get(1))// 42
+console.log(timeLimitedCache.count()) // 1
