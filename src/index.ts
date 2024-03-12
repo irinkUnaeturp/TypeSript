@@ -1,6 +1,6 @@
-import { TimeLimitedCache } from "./Cache";
+import { debounce } from "./Debounce";
 
-const timeLimitedCache = new TimeLimitedCache()
-console.log(timeLimitedCache.set(1, 42, 1000)); // false
-console.log(timeLimitedCache.get(1))// 42
-console.log(timeLimitedCache.count()) // 1
+const log = debounce(console.log, 100);
+log('Hello'); // cancelled
+log('Hello'); // cancelled
+log('Hello'); // Logged at t=100ms
