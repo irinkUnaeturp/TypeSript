@@ -1,6 +1,4 @@
-import { debounce } from "./Debounce";
+import { promiseAll } from "./asynchronusFunction";
 
-const log = debounce(console.log, 100);
-log('Hello'); // cancelled
-log('Hello'); // cancelled
-log('Hello'); // Logged at t=100ms
+const promise = promiseAll([() => new Promise(res => res(42))])
+promise.then(console.log); // [42]
