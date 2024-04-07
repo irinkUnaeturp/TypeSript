@@ -210,29 +210,309 @@
 // console.log(onceFn(2, 3, 6)); // returns undefined without calling fn
 
 //Memoize
-function memoize(fn) {
+// function memoize(fn) {
     
-    const ad = {};
+//     const ad = {};
    
-    return function(this:any, ...args) {
-     const key = JSON.stringify(args);
+//     return function(this:any, ...args) {
+//      const key = JSON.stringify(args);
      
-     if (key in ad) {
-       return ad[key];
-     }
+//      if (key in ad) {
+//        return ad[key];
+//      }
      
-     const result = fn.apply(this, args);
-     ad[key] = result;
+//      const result = fn.apply(this, args);
+//      ad[key] = result;
      
-     return result;
-   }
+//      return result;
+//    }
    
- }
+//  }
  
  
- const memoizedSum = memoize(function(a, b) {
-   return a + b;
- });
+//  const memoizedSum = memoize(function(a, b) {
+//    return a + b;
+//  });
  
- console.log(memoizedSum(2, 3)); // Output: 5
+//  console.log(memoizedSum(2, 3)); // Output: 5
 
+//Add two promises
+// export async function addTwoPromises(promise1: Promise<number>, promise2: Promise<number>) {
+//     // promise1 = new Promise(resolve => setTimeout(() => resolve(10), 50))
+//     // promise2 = new Promise(resolve => setTimeout(() => resolve(-12), 30))
+//    let prom1 = await promise1
+//    let prom2 = await promise2
+//    let promResult = prom1 + prom2
+//    return promResult
+// };
+
+//Sleep
+// export async function sleep(millis: number): Promise<void> {
+//     let prom:Promise<void>  = new Promise((resolve)=> {
+//         setTimeout(()=> resolve(), millis )
+//     })
+//     return prom
+
+// }
+
+//timeout cancellation
+
+// export function cancellable(fn, args, t): Function {
+//     let timer = setTimeout(fn, t, ...args)
+//     return () => clearTimeout(timer)
+
+// }
+
+//Interval Camcellation
+// export function cancellable(fun, args, t: number): Function {
+//     fun(...args)
+//     const interval = setInterval(() => fun(...args), t)
+//     return () => clearInterval(interval)
+    
+// };
+
+//Promise Time limit
+// export function timeLimit(fn , t: number){
+    
+//     return async function (...args) {
+
+//         return new Promise((resolve, reject) => {
+//             const timeoutID = setTimeout(reject, t, 'Time Limit Exceeded');
+//             fn(...args)
+//                 .then(resolve)
+//                 .catch(reject)
+//                 .finally(() => clearTimeout(timeoutID));
+//         });
+//     }
+// };
+
+//Cache with time limit
+// export class TimeLimitedCache {
+    
+//     private cache;
+//    private timeOutCache;
+//    constructor() {
+//        this.cache = {}
+//        this.timeOutCache = {}
+//    }
+   
+//    set(key: number, value: number, duration: number): boolean {
+//        let cacheKeyExists = false;
+//        if(this.cache[key]) {
+//            cacheKeyExists = true;
+//            clearTimeout(this.timeOutCache[key]);
+//        }
+//        this.cache[key] = value; 
+//        const timeoutId = setTimeout(()=>{
+//            delete this.cache[key];
+//        },duration);
+
+//        this.timeOutCache[key] = timeoutId;
+      
+//       return cacheKeyExists;
+//    }
+   
+//    get(key: number): number {
+//        return this.cache[key] || -1;
+//    }
+   
+//    count(): number {
+//        return Object.keys(this.cache).length;
+//    }
+// }
+
+//execute asynchronus functions in paralel
+// type Fn<T> = () => Promise<T>
+
+// export function promiseAll<T>(functions: Fn<T>[]): Promise<T[]> {
+//     return new Promise((resolve, reject) => {
+//         let results = new Array(functions.length)
+//         let count = functions.length
+
+//         for (let i = 0; i < functions.length; i++) {
+//             functions[i]().then(res => {
+//                 results[i] = res
+//                 count--
+//                 if (count === 0) {
+//                      resolve(results)
+//                 }
+//             }).catch(error =>
+//                 reject(error))
+//         }
+//     })
+// };
+
+//is object empty
+// export function isEmpty(obj: Obj): boolean {
+//     if (Object.keys(obj).length == 0){
+//         return true
+//     }else{
+//         return false
+//     }
+// }
+
+
+//Chunk Array
+// type T= any
+// export function chunk(arr, size) {
+//     let result:Array<T> = [];
+//     let array = 0
+//     for(let i = 0; i < arr.length; i = i + size) {
+//         result[array] = arr.slice(i, i+size)
+//        array++
+//     }
+
+//     return result
+// };
+
+//Array Prototype Last
+// declare global {
+//     interface Array<T> {
+//         last(): T | -1;
+//     }
+// }
+
+// Array.prototype.last = function() {
+//     if (this.length > 0) {
+//         return this[this.length - 1];
+//       } else {
+//         return -1;
+//       }
+// }
+
+// export const arr = [1, 2, 3];
+// arr.last(); // 3
+// export {}
+
+//Group By
+// declare global {
+//     interface Array<T> {
+//         groupBy(fn: (item: T) => string): Record<string, T[]>
+//     }
+// }
+
+// Array.prototype.groupBy = function(fn) {
+//     const newObject = {};
+//     for(let i of this) {
+
+//         const key = fn(i);
+
+//         if(!newObject[key]){
+//             newObject[key]=[];
+//         }
+    
+//         newObject[key].push(i);
+//     }
+    
+//     return newObject;
+// }
+
+
+// export const array = [
+//     {"id":"1"},
+//     {"id":"1"},
+//     {"id":"2"}
+//   ], 
+//   fn = function (item) { 
+//     return item.id; 
+//   }
+// export{}
+
+//Sort By
+
+// export function sortBy(arr, fn) {
+//     return arr.sort((a, b) => fn(a) - fn(b))
+// };
+
+//Join Two Arrays by ID//??????????????????????????????????????????????????????????????
+// Даны два массива arr1 и arr2, верните новый массив joinedArray. Все объекты в каждом из двух входных массивов будут содержать поле id с целочисленным значением. joinedArray - это массив, сформированный путем объединения arr1 и arr2 на основе их ключа id. Длина joinedArray должна быть равна длине уникальных значений id. Возвращаемый массив должен быть отсортирован по возрастанию на основе ключа id.
+
+// Если данное id существует в одном массиве, но не в другом, единственный объект с этим id должен быть включен в результат без изменений.
+
+// Если два объекта имеют общий id, их свойства должны быть объединены в один объект:
+
+// Если ключ существует только в одном объекте, эту единственную пару ключ-значение следует включить в объект.
+// Если ключ включен в оба объекта, значение в объекте из arr2 должно переопределить значение из arr1.
+// function join(arr1, arr2) {
+//     let i = 0
+//     let j = 0
+//     const result = []
+//     while (i < arr1.length && j < arr2.length) {
+//         if (arr1[i].id < arr2[j].id) {
+//             result.push(arr1[i]);
+//             i++;
+//         }
+//     }
+// }
+
+
+//Compact Object
+// function compactObject(obj: Obj): Obj {
+    
+// };
+
+//Array Wrapper
+// export class ArrayWrapper {
+    
+//     private nums: number[];
+  
+//     constructor(nums: number[]) {
+//       this.nums = nums;
+//     }
+  
+//     valueOf(): number {
+//       return this.nums.reduce((acc, curr) => acc + curr, 0);
+//     }
+  
+//     toString(): string {
+//       return JSON.stringify(this.nums);
+//     }
+//   }
+//   import { ArrayWrapper } from "./createFunction";
+ 
+// const obj1:Array[] = new ArrayWrapper([1, 2]);
+//   const obj3:ArrayWrapper = new ArrayWrapper([3, 4]);//ошибка Operator '+' cannot be applied to types 'import("/Users/pruteanukady/Desktop/TypeSript/src/createFunction").ArrayWrapper' and 'import("/Users/pruteanukady/Desktop/TypeSript/src/createFunction").ArrayWrapper'.
+// console.log(obj1 + obj3); // 10
+// console.log(String(obj1)); // "[1,2]"
+// console.log(String(obj3)); // "[3,4]"
+
+//Calculator with Method Chaining
+class Calculator {
+    num:number;
+    constructor(value: number) {
+        this.num=value
+    }
+    
+    add(value: number): Calculator {
+         this.num= this.num+value
+         return this
+    }
+    
+    subtract(value: number): Calculator {
+        this.num= this.num-value
+         return this
+    }
+    
+    multiply(value: number): Calculator {
+        this.num= this.num*value
+         return this
+    }
+    
+    divide(value: number): Calculator {
+        if(value)
+       { this.num= this.num/value
+         return this}
+         else{
+throw new Error("Division by zero is not allowed") 
+         }
+    }
+    
+    power(value: number): Calculator {
+        this.num= this.num**value
+         return this
+    }
+    
+    getResult(): number {
+         return this.num
+    }
+}
